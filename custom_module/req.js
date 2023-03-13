@@ -15,3 +15,6 @@ const send = (url, data) => {
 };
 
 module.exports = { send };
+
+// console.log(222222222, "req module export");
+// only 1 time export and keep it inside cache
