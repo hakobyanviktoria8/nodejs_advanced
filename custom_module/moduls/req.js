@@ -4,14 +4,7 @@ const encrypt = (data) => {
 
 const send = (url, data) => {
   const encryptedData = encrypt(data);
-  console.log(
-    "Sending daata _ ",
-    encryptedData,
-    "URL _ ",
-    url,
-    "DATA _ ",
-    data
-  );
+  console.log("Sending daata _ ", encryptedData, data, "URL _ ", url);
 };
 
 module.exports = { send };
