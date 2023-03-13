@@ -1,7 +1,7 @@
 const { get } = require("http");
 // the some way we can use request method
 
-const req = get("http://www.google.com/", (res) => {
+get("http://www.google.com/", (res) => {
   res.on("data", (chunk) => {
     console.log(chunk.toString());
   });
@@ -10,4 +10,3 @@ const req = get("http://www.google.com/", (res) => {
   });
 });
 
-req.end();
