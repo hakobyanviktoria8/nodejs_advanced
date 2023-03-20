@@ -12,6 +12,11 @@ function isHabitablePlanets(planet) {
   );
 }
 
+// try to writr readable stream value
+// let writer = fs.createWriteStream("test_gfg.txt", {
+//   flags: "w",
+// });
+
 fs.createReadStream("kepler_data.csv")
   .pipe(
     parse({
@@ -29,5 +34,7 @@ fs.createReadStream("kepler_data.csv")
   })
   .on("end", () => {
     const arr = habitablePlanets.map((planet) => planet["kepler_name"]);
-    console.log("Done!", habitablePlanets.length, arr);
-  });
+    console.log("Done!");
+    console.log(232323, habitablePlanets, arr);
+  })
+  // .pipe(writer);
