@@ -2,6 +2,7 @@ const http = require("http");
 
 const server = http.createServer();
 
+// this is /posts path
 server.on("request", (req, res) => {
   if (req.url === "/posts") {
     res.statusCode = 201;
