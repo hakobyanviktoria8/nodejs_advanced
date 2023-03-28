@@ -25,8 +25,8 @@ server.on("request", (req, res) => {
       const postOne = data.toString();
       console.log("Req.on", postOne);
       posts.push(JSON.parse(postOne));
-      res.end("Post added!");
     });
+    req.pipe(res);
   } else if (req.method === "GET" && paths[1] === "posts") {
     res.statusCode = 211;
     res.setHeader("Content-Type", "application/json");
@@ -38,5 +38,15 @@ server.on("request", (req, res) => {
     }
   }
 });
+
+// 1. server run
+// 2. inside bbrowser console run this code
+// 3. open browser http://localhost:2023/posts/ or /id
+// fetch("http://localhost:2023/posts",{
+//     method:"POST",
+//     body:JSON.stringify({id: 4, post:"This is post 4"})
+// })
+// .then((res)=>res.json())
+// .then(post=> console.log(11111111111,post))
 
 server.listen(2023, () => console.log("Server run!"));
