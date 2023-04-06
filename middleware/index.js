@@ -1,17 +1,7 @@
 const express = require("express");
+const friendsControllers = require("./../controllers/friends.controller");
 
 const app = express();
-
-const friends = [
-  {
-    id: 0,
-    name: "Viki",
-  },
-  {
-    id: 1,
-    name: "Alik",
-  },
-];
 
 app.use((req, res, next) => {
   const startTime = Date.now();
@@ -24,27 +14,17 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 
-app.post("/friends", (req, res) => {
-  if (!req.body.name) {
-    return res.status(400).json({
-      error: "Missing name",
-    });
-  }
-  const newFriend = {
-    id: friends.length,
-    name: req.body.name,
-  };
-  friends.push(newFriend);
-  res.json(newFriend);
-});
+app.post("/friends", friendsControllers.postFriends);
 
 app.get("/", (req, res) => {
   res.send("Start coding");
 });
 
-app.get("/friends", (req, res) => {
-  res.json(friends);
-});
+app.get("/friends", friendsControllers.getFriends);
+
+app.get("/friends/:friendId", friendsControllers.getFriendWithId);
+
+app.put("/friends/:friendId", friendsControllers.putFriendWithId);
 
 app.listen(3000, () => {
   console.log("Server run...");
