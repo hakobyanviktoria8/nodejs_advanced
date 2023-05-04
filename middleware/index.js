@@ -7,9 +7,9 @@ app.use((req, res, next) => {
   const startTime = Date.now();
   console.log(`111111111 ${req.method} ${req.url}`);
   // res.send("Hi");
-  next();
+  // next();
   const duration = Date.now() - startTime;
-  console.log(duration);
+  console.log("duration__", duration);
 });
 
 app.use(express.json());

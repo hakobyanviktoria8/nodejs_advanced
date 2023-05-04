@@ -36,5 +36,5 @@ fs.createReadStream("kepler_data.csv")
     const arr = habitablePlanets.map((planet) => planet["kepler_name"]);
     console.log("Done!");
     console.log(232323, habitablePlanets, arr);
-  })
-  // .pipe(writer);
+  });
+// .pipe(writer);
