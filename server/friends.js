@@ -10,7 +10,7 @@ const friends = [
     name: "Viki",
   },
   {
-    id: 1,
+    id: 2,
     name: "Arev",
   },
 ];
@@ -21,7 +21,18 @@ server.on("request", (req, res) => {
   const urlLength = req.url.split("/");
   console.log(req.url, urlLength, urlLength.length); //   lh:2023 /frieands
 
-  if (urlLength[1] === "friends") {
+  if (req.method === "POST" && urlLength[1] === "friends") {
+    req.on("data", (data) => {
+      const friend = data.toString();
+      res.writeHead(200, {
+        "Content-type": "application/json",
+      });
+      res.end("Added");
+      console.log("POST Request", friend);
+      friends.push(JSON.parse(friend));
+    });
+    req.pipe(res);
+  } else if (req.method === "GET" && urlLength[1] === "friends") {
     res.statusCode = 201;
     res.setHeader("Content-type", "application/json");
 
@@ -39,6 +50,6 @@ server.on("request", (req, res) => {
   }
 });
 
-server.listen(2023, () => {
-  console.log("Server listen 2023 port!");
+server.listen(3000, () => {
+  console.log("Server listen 3000 port!");
 });
